@@ -12,3 +12,4 @@ Allow: /
 
 User-agent: *
 Allow: /
+Sitemap: https://bestarclinic.vercel.app/sitemap.xml

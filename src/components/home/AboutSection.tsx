@@ -70,7 +70,7 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* IMAGE 🔥 */}
+          {/* IMAGE */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -78,31 +78,25 @@ const AboutSection = () => {
             className="relative flex justify-center"
           >
 
-            {/* Glow خلفية */}
+            {/* Glow */}
             <div className="absolute w-[320px] h-[420px] bg-yellow-300/20 blur-3xl rounded-full"></div>
 
             {/* Frame */}
-            <motion.div
-              className="relative p-[5px] rounded-2xl bg-gradient-to-br from-yellow-300/40 via-yellow-100/20 to-transparent shadow-xl"
-              animate={{ y: [0, -0, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
+            <div className="relative p-[5px] rounded-2xl bg-gradient-to-br from-yellow-300/40 via-yellow-100/20 to-transparent shadow-xl">
 
-              <motion.div
-                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[350px] h-[350px]"
-                whileHover={{ scale: 1.01 }}
+              <div
+                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[350px] h-[350px] transition-transform duration-300 hover:scale-[1.01]"
               >
-                <motion.img
+                <img
                   src="/images/uuu.png"
                   alt="Clinic"
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
-                  animate={{ scale: [1, 1.01, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  decoding="async"
                 />
-              </motion.div>
+              </div>
 
-            </motion.div>
+            </div>
 
             {/* Badge */}
             <motion.div

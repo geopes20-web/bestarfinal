@@ -2,25 +2,68 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- 📱 مهم للموبايل -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 🔥 SEO Title -->
     <title>Bestar Clinic - Advanced Aesthetic & Hair Restoration Center</title>
 
-    <meta name="description" content="Bestar Clinic is a world-class aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and skin treatments.">
+    <!-- 🔥 SEO Description -->
+    <meta name="description" content="Bestar Clinic is a leading aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and advanced skin treatments with world-class expertise.">
+
+    <!-- 🔑 Keywords -->
+    <meta name="keywords" content="hair transplant, botox, fillers, PRP, skin care, aesthetic clinic, best clinic Egypt, زراعة الشعر, بوتوكس, فيلر">
+
+    <!-- 👤 Author -->
     <meta name="author" content="Bestar Clinic" />
 
+    <!-- 🤖 Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- 🌍 Canonical (مهم جدًا) -->
+    <link rel="canonical" href="https://bestarclinic.vercel.app/" />
+
+    <!-- 🔥 Open Graph (Facebook + WhatsApp) -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/hero.png">
-    <meta property="og:title" content="Bestar Clinic - Advanced Aesthetic & Hair Restoration Center">
-    <meta property="og:description" content="Bestar Clinic is a world-class aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and skin treatments.">
+    <meta property="og:url" content="https://bestarclinic.vercel.app/" />
+    <meta property="og:image" content="https://bestarclinic.vercel.app/images/hero.png" />
+    <meta property="og:title" content="Bestar Clinic - Advanced Aesthetic & Hair Restoration Center" />
+    <meta property="og:description" content="Bestar Clinic is a world-class aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and skin treatments." />
 
+    <!-- 🐦 Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/images/hero.png">
-    <meta name="twitter:title" content="Bestar Clinic - Advanced Aesthetic & Hair Restoration Center">
-    <meta name="twitter:description" content="Bestar Clinic is a world-class aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and skin treatments.">
+    <meta name="twitter:url" content="https://bestarclinic.vercel.app/" />
+    <meta name="twitter:image" content="https://bestarclinic.vercel.app/images/hero.png" />
+    <meta name="twitter:title" content="Bestar Clinic - Advanced Aesthetic & Hair Restoration Center" />
+    <meta name="twitter:description" content="Bestar Clinic is a world-class aesthetic and hair restoration center offering hair transplant, botox, fillers, PRP, and skin treatments." />
 
+    <!-- 🌐 Language -->
+    <meta http-equiv="Content-Language" content="en" />
+
+    <!-- 📌 Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <!-- ✨ تحسين شكل الرسالة -->
+    <!-- ⚡ Preload Image (تحسين السرعة) -->
+    <link rel="preload" as="image" href="/images/hero.png">
+
+    <!-- 🔥 Structured Data (SEO قوي جدًا) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "Bestar Clinic",
+      "url": "https://bestarclinic.vercel.app/",
+      "image": "https://bestarclinic.vercel.app/images/hero.png",
+      "description": "Advanced aesthetic and hair restoration clinic offering hair transplant, botox, fillers and PRP.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "EG"
+      }
+    }
+    </script>
+
+    <!-- ✨ تحسين شكل الرسالة (زي ما هو) -->
     <style>
       .chat-hint {
         position: fixed;
@@ -61,7 +104,6 @@
         100% { transform: translateY(0px); }
       }
 
-      /* ✨ تأثير pulse احترافي */
       .chat-pulse {
         position: fixed;
         bottom: 22px;
@@ -75,20 +117,11 @@
       }
 
       @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.6;
-        }
-        70% {
-          transform: scale(1.6);
-          opacity: 0;
-        }
-        100% {
-          opacity: 0;
-        }
+        0% { transform: scale(1); opacity: 0.6; }
+        70% { transform: scale(1.6); opacity: 0; }
+        100% { opacity: 0; }
       }
 
-      /* 📱 موبايل */
       @media (max-width: 600px) {
         .chat-hint {
           bottom: 80px;
@@ -105,35 +138,29 @@
     <!-- React App -->
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- 🔥 Chatbot Widget -->
+    <!-- Chatbot -->
     <script src="https://smart-clinic-aide.lovable.app/widget.js" async></script>
 
-    <!-- 💬 الرسالة -->
     <div class="chat-hint" id="chatHint">
       👋 محتاج استشارة؟ <br>
       <span>اتكلم مع الشات بوت !</span>
     </div>
 
-    <!-- ✨ Pulse -->
     <div class="chat-pulse"></div>
 
-    <!-- 🧠 التحكم -->
     <script>
       const hint = document.getElementById("chatHint");
 
-      // تظهر بعد 4 ثواني
       setTimeout(() => {
         hint.style.opacity = "1";
       }, 4000);
 
-      // تختفي لما الشات يفتح
       window.addEventListener("message", function(event) {
         if (event.data === "chat_opened") {
           hint.style.display = "none";
         }
       });
 
-      // تختفي لو المستخدم ضغط عليها
       hint.addEventListener("click", () => {
         hint.style.display = "none";
       });

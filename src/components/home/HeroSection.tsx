@@ -1,4 +1,4 @@
- import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Stethoscope, Award, Shield, Star } from "lucide-react";
@@ -39,19 +39,23 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: string; suffix?: str
 };
 
 const HeroSection = () => {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
+    if (isMobile) return; // ❗ وقف التأثير على الموبايل
+
     const handleMouse = (e: MouseEvent) => {
       setMousePos({
         x: (e.clientX / window.innerWidth - 0.5) * 2,
         y: (e.clientY / window.innerHeight - 0.5) * 2,
       });
     };
+
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
+  }, [isMobile]);
 
   const trustBadges = [
     { icon: Award, label: t("stats.procedures"), value: "15K", suffix: "+" },
@@ -61,15 +65,16 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden">
-      
+
       {/* === BACKGROUND LAYER === */}
       <div className="absolute inset-0">
-        
+
         <motion.img
           src="/images/hero.jpg"
           alt="Bestar Clinic"
           className="w-full h-full object-cover"
           loading="eager"
+          decoding="async" // ✅ تحسين
           initial={{ scale: 1, filter: "brightness(2) saturate(1.5)" }}
           animate={{
             scale: 1,
@@ -77,11 +82,14 @@ const HeroSection = () => {
           }}
           transition={{ duration: 8, ease: [0.22, 1, 0.36, 1] }}
           style={{
-            transform: `translate(${mousePos.x * -5}px, ${mousePos.y * -5}px)`,
+            transform: isMobile
+              ? "none"
+              : `translate(${mousePos.x * -5}px, ${mousePos.y * -5}px)`,
+            willChange: "transform", // ✅ تحسين GPU
           }}
         />
 
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none"
           style={{
             boxShadow: "inset 0 0 200px 60px hsl(214 85% 5% / 0.7)",
@@ -91,19 +99,28 @@ const HeroSection = () => {
         <motion.div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(0 0% 100% / 0.05) 2px, hsl(0 0% 100% / 0.05) 4px)",
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(0 0% 100% / 0.05) 2px, hsl(0 0% 100% / 0.05) 4px)",
           }}
           animate={{ backgroundPosition: ["0px 0px", "0px 100px"] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          transition={{
+            duration: 8,
+            repeat: isMobile ? 0 : Infinity, // ✅ تقليل الحمل
+            ease: "linear"
+          }}
         />
 
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse at 30% 40%, hsl(210 75% 50% / 0.08), transparent 60%)",
+            background:
+              "radial-gradient(ellipse at 30% 40%, hsl(210 75% 50% / 0.08), transparent 60%)",
           }}
           animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 6, repeat: Infinity }}
+          transition={{
+            duration: 6,
+            repeat: isMobile ? 0 : Infinity // ✅ تقليل الحمل
+          }}
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(214,85%,5%)]/98 via-[hsl(214,75%,8%)]/85 to-[hsl(214,65%,12%)]/40" />
@@ -116,7 +133,6 @@ const HeroSection = () => {
       <div className="relative container mx-auto px-4 lg:px-8 pt-24">
         <div className="max-w-2xl">
 
-          {/* TITLE */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,7 +145,6 @@ const HeroSection = () => {
             </span>
           </motion.h1>
 
-          {/* SUBTITLE */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,7 +154,6 @@ const HeroSection = () => {
             {t("hero.subtitle")}
           </motion.p>
 
-          {/* BUTTONS */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -182,7 +196,10 @@ const HeroSection = () => {
                 "0 0 0px rgba(59,130,246,0.4)"
               ]
             }}
-            transition={{ duration: 2.2, repeat: Infinity }}
+            transition={{
+              duration: 2.2,
+              repeat: isMobile ? 0 : Infinity // ✅
+            }}
             className="
               w-[85%] sm:w-auto
               max-w-[220px] sm:max-w-xs
