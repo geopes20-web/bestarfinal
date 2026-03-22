@@ -85,7 +85,7 @@ const blogDataEN: Record<string, BlogContent> = {
   "choosing-clinic": {
     title: "How to Choose the Right Clinic for Your Hair Transplant",
     excerpt: "Choosing the right clinic is the most important decision in your hair restoration journey. Here's what experts recommend looking for.",
-    date: "Jan 5, 2025", category: "Guide", image: "/images/hero2.png", readTime: "6 min",
+    date: "Jan 5, 2025", category: "Guide", image: "/images/hero2.jpg", readTime: "6 min",
     content: [
       "Choosing the right clinic for your hair transplant is one of the most important decisions you'll make in your hair restoration journey. The difference between a great result and a disappointing one often comes down to the clinic you choose. With so many options available — especially with medical tourism growing rapidly — here's an expert guide to making the right choice.",
       "## 1. Verify Doctor Credentials and Experience\n\nThis is the single most important factor. Ensure your surgeon:\n- Is a licensed medical doctor (not just a technician performing the procedure)\n- Has specialized training in hair restoration surgery\n- Has significant experience (1,000+ procedures minimum)\n- Is a member of recognized professional organizations (ISHRS, ABHRS)\n- Can show you their own results, not stock photos\n- Will personally perform the critical parts of your procedure",

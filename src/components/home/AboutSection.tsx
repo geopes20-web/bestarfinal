@@ -85,10 +85,10 @@ const AboutSection = () => {
             <div className="relative p-[5px] rounded-2xl bg-gradient-to-br from-yellow-300/40 via-yellow-100/20 to-transparent shadow-xl">
 
               <div
-                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[350px] h-[350px] transition-transform duration-300 hover:scale-[1.01]"
+                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[350px] h-[250px] transition-transform duration-300 hover:scale-[1.01]"
               >
                 <img
-                  src="/images/uuu.png"
+                  src="/images/hero2.jpg"
                   alt="Clinic"
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
