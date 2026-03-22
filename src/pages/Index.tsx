@@ -1,23 +1,38 @@
+import { lazy, Suspense } from "react";
+
 import HeroSection from "@/components/home/HeroSection";
-import CircularServicesSection from "@/components/home/CircularServicesSection";
-import AboutSection from "@/components/home/AboutSection";
-import ServicesSection from "@/components/home/ServicesSection";
-import StatsSection from "@/components/home/StatsSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import BlogPreviewSection from "@/components/home/BlogPreviewSection";
-import CTASection from "@/components/home/CTASection";
+
+// 🔥 Lazy Sections
+const CircularServicesSection = lazy(() => import("@/components/home/CircularServicesSection"));
+const AboutSection = lazy(() => import("@/components/home/AboutSection"));
+const ServicesSection = lazy(() => import("@/components/home/ServicesSection"));
+const StatsSection = lazy(() => import("@/components/home/StatsSection"));
+const TestimonialsSection = lazy(() => import("@/components/home/TestimonialsSection"));
+const BlogPreviewSection = lazy(() => import("@/components/home/BlogPreviewSection"));
+const CTASection = lazy(() => import("@/components/home/CTASection"));
+
+const SectionLoader = () => (
+  <div className="py-20 text-center text-muted-foreground">
+    Loading...
+  </div>
+);
 
 const Index = () => {
   return (
     <>
+      {/* 🔥 Hero (سريع + مهم للـ LCP) */}
       <HeroSection />
-      <CircularServicesSection />
-      <AboutSection />
-      <ServicesSection />
-      <StatsSection />
-      <TestimonialsSection />
-      <BlogPreviewSection />
-      <CTASection />
+
+      {/* 🔥 باقي الصفحة Lazy */}
+      <Suspense fallback={<SectionLoader />}>
+        <CircularServicesSection />
+        <AboutSection />
+        <ServicesSection />
+        <StatsSection />
+        <TestimonialsSection />
+        <BlogPreviewSection />
+        <CTASection />
+      </Suspense>
     </>
   );
 };
