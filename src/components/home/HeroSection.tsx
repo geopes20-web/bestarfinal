@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Stethoscope, Award, Shield, Star } from "lucide-react";
@@ -81,7 +81,6 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Cinematic vignette */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -89,7 +88,6 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Scan lines */}
         <motion.div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
@@ -99,7 +97,6 @@ const HeroSection = () => {
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         />
 
-        {/* Light wash */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -109,7 +106,6 @@ const HeroSection = () => {
           transition={{ duration: 6, repeat: Infinity }}
         />
 
-        {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(214,85%,5%)]/98 via-[hsl(214,75%,8%)]/85 to-[hsl(214,65%,12%)]/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[hsl(214,85%,5%)]/70 via-transparent to-[hsl(214,85%,5%)]/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[hsl(214,85%,5%)]/90" />
@@ -125,10 +121,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl font-bold text-white leading-[1.2] tracking-wide"
+            className="text-5xl font-bold leading-[1.3] tracking-wide text-gold-200 drop-shadow-[0_0_15px_rgba(255,215,0,0.2)]"
           >
             {t("hero.title1")} <br />
-            <span className="text-gradient-gold">{t("hero.title2")}</span>
+            <span className="bg-gradient-to-r from-yellow-300 via-yellow-500 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+              {t("hero.title2")}
+            </span>
           </motion.h1>
 
           {/* SUBTITLE */}
@@ -136,7 +134,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="mt-6 text-white/60 leading-[1.9]"
+            className="mt-6 text-white/70 leading-[1.9]"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -166,28 +164,40 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* ✅ الزر المضاف فقط (أسفل الصفحة) */}
+      {/* زر ثابت */}
       <motion.div
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="fixed bottom-4 sm:bottom-6 left-.1/2 -translate-x-1/2 z-30 w-full flex justify-center px-3"
       >
-        <Link to="/cononline">
+        <Link to="/cononline" className="w-full flex justify-center">
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             animate={{
               boxShadow: [
-                "0 0 0px rgba(59,130,246,0.5)",
-                "0 0 25px rgba(59,130,246,0.8)",
-                "0 0 0px rgba(59,130,246,0.5)"
+                "0 0 0px rgba(101, 150, 228, 0.4)",
+                "0 0 25px rgba(133, 151, 181, 0.9)",
+                "0 0 0px rgba(59,130,246,0.4)"
               ]
             }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl"
+            transition={{ duration: 2.2, repeat: Infinity }}
+            className="
+              w-[85%] sm:w-auto
+              max-w-[220px] sm:max-w-xs
+              bg-gradient-to-r from-yellow-400 to-blue-400
+              text-white
+              px-4 sm:px-8
+              py-2 sm:py-4
+              rounded-lg sm:rounded-2xl
+              font-medium sm:font-bold
+              text-xs sm:text-lg
+              shadow-xl
+              backdrop-blur
+            "
           >
-            🎥 Online Consultation via Zoom with Doctor
+            🎥 Zoom with doctor
           </motion.button>
         </Link>
       </motion.div>

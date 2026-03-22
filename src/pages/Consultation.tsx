@@ -123,8 +123,21 @@ const Consultation = () => {
   return (
     <div className="pt-[72px]">
       <section className="py-20 lg:py-28 bg-gradient-hero text-center relative overflow-hidden noise">
-        <motion.div className="absolute top-1/2 end-1/4 w-72 h-72 rounded-full opacity-[0.06]" style={{ background: 'radial-gradient(circle, hsl(210 75% 50%), transparent)' }} animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 5, repeat: Infinity }} />
-        <motion.div className="absolute bottom-0 start-1/3 w-56 h-56 rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, hsl(38 42% 60%), transparent)' }} animate={{ scale: [1.2, 1, 1.2] }} transition={{ duration: 7, repeat: Infinity }} />
+
+        <motion.div
+          className="absolute pointer-events-none top-1/2 end-1/4 w-72 h-72 rounded-full opacity-[0.06]"
+          style={{ background: 'radial-gradient(circle, hsl(210 75% 50%), transparent)' }}
+          animate={{ scale: [1, 1.3, 1] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+
+        <motion.div
+          className="absolute pointer-events-none bottom-0 start-1/3 w-56 h-56 rounded-full opacity-[0.04]"
+          style={{ background: 'radial-gradient(circle, hsl(38 42% 60%), transparent)' }}
+          animate={{ scale: [1.2, 1, 1.2] }}
+          transition={{ duration: 7, repeat: Infinity }}
+        />
+
         <div className="container mx-auto px-4 relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">{t("page.consultation.tag")}</span>
@@ -138,21 +151,24 @@ const Consultation = () => {
       </section>
 
       <section className="py-16 bg-background relative overflow-hidden">
-        <div className="absolute top-0 start-0 w-96 h-96 rounded-full opacity-[0.02]" style={{ background: 'radial-gradient(circle, hsl(38 42% 60%), transparent)' }} />
+        <div className="absolute pointer-events-none top-0 start-0 w-96 h-96 rounded-full opacity-[0.02]" style={{ background: 'radial-gradient(circle, hsl(38 42% 60%), transparent)' }} />
+
         <div className="container mx-auto px-4 max-w-2xl">
           <motion.form
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
             onSubmit={handleSubmit}
-            className="space-y-5 p-8 rounded-2xl border border-border/60 bg-card shadow-card hover:shadow-elevated transition-shadow duration-500"
+            className="relative z-50 pointer-events-auto space-y-5 p-8 rounded-2xl border border-border/60 bg-card shadow-card hover:shadow-elevated transition-shadow duration-500"
           >
+
             <div className="flex items-center gap-2 mb-2">
               <motion.div animate={{ rotate: [0, 15, -15, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }}>
                 <Sparkles className="w-5 h-5 text-primary" />
               </motion.div>
               <h3 className="text-lg font-display font-bold text-foreground">{t("page.consultation.tag")}</h3>
             </div>
+
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-semibold text-foreground mb-1.5 block">{t("form.name")} *</label>
@@ -163,6 +179,7 @@ const Consultation = () => {
                 <Input value={phone} onChange={e => setPhone(e.target.value)} type="tel" maxLength={20} className="h-11 rounded-xl focus:glow-primary transition-shadow" />
               </div>
             </div>
+
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-semibold text-foreground mb-1.5 block">WhatsApp *</label>
@@ -173,20 +190,16 @@ const Consultation = () => {
                 <Input value={email} onChange={e => setEmail(e.target.value)} type="email" required maxLength={255} className="h-11 rounded-xl focus:glow-primary transition-shadow" />
               </div>
             </div>
+
             <div>
               <label className="text-xs font-semibold text-foreground mb-1.5 block">{t("form.question")} *</label>
               <Textarea value={question} onChange={e => setQuestion(e.target.value)} rows={6} required maxLength={2000} className="rounded-xl focus:glow-primary transition-shadow" />
             </div>
+
             <div>
               <label className="text-xs font-semibold text-foreground mb-1.5 block">{t("form.uploadPhotos")}</label>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                onChange={handleFileSelect}
-              />
+              <input ref={fileInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileSelect} />
+
               <div
                 className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/40 transition-all cursor-pointer group"
                 onClick={() => fileInputRef.current?.click()}
@@ -194,15 +207,12 @@ const Consultation = () => {
                 <Upload className="w-7 h-7 mx-auto text-muted-foreground group-hover:text-primary transition-colors" />
                 <p className="mt-2 text-sm text-muted-foreground">JPG, PNG up to 10MB (max 5 photos)</p>
               </div>
+
               {selectedFiles.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-3">
                   {selectedFiles.map((file, i) => (
                     <div key={i} className="relative group/thumb">
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt={file.name}
-                        className="w-16 h-16 rounded-lg object-cover border border-border"
-                      />
+                      <img src={URL.createObjectURL(file)} alt={file.name} className="w-16 h-16 rounded-lg object-cover border border-border" />
                       <button
                         type="button"
                         onClick={() => removeFile(i)}
@@ -215,9 +225,11 @@ const Consultation = () => {
                 </div>
               )}
             </div>
+
             <Button type="submit" size="lg" disabled={loading} className="w-full bg-gradient-blue text-primary-foreground shadow-blue rounded-xl glow-primary">
               {loading ? t("form.sending") : t("form.submit")}
             </Button>
+
           </motion.form>
         </div>
       </section>

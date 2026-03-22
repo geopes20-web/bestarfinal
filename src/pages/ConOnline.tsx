@@ -22,7 +22,6 @@ const Consultation = () => {
   const [whatsapp, setWhatsapp] = useState("");
   const [question, setQuestion] = useState("");
 
-  // ✅ جلب بيانات الدفع
   useEffect(() => {
     fetchPayment();
   }, []);
@@ -37,7 +36,6 @@ const Consultation = () => {
     setPayment(data);
   };
 
-  // ✅ رفع الصور
   const uploadPhotos = async (): Promise<string[]> => {
     const urls: string[] = [];
 
@@ -60,7 +58,6 @@ const Consultation = () => {
     return urls;
   };
 
-  // ✅ اختيار صورة
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     setSelectedFiles(Array.from(e.target.files));
@@ -70,7 +67,6 @@ const Consultation = () => {
     setSelectedFiles([]);
   };
 
-  // ✅ submit
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -121,7 +117,6 @@ const Consultation = () => {
     setLoading(false);
   };
 
-  // ✅ success
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
@@ -137,108 +132,142 @@ const Consultation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black p-6">
 
-      <motion.form
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-lg space-y-6 bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl"
-      >
+      {/* 🔥 HERO SECTION */}
+      <div className="max-w-6xl mx-auto mb-10 grid md:grid-cols-2 gap-8 items-center">
+        
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+            استشارة طبية أونلاين عبر زووم 🎥
+          </h1>
 
-        <h1 className="text-3xl font-bold text-center text-white">
-          استشارة أونلاين عبر زووم 🎥
-        </h1>
+          <p className="text-gray-300 text-lg mb-6">
+            احجز استشارتك الآن وتواصل مباشرة مع الدكتور من بيتك بسهولة وخصوصية تامة. 
+            تقييم الحالة، الرد على كل استفساراتك، وخطة علاج واضحة في دقائق.
+          </p>
 
-        {/* 💳 بيانات الدفع */}
-        {payment && (
-          <div className="bg-yellow-500/10 border border-yellow-400/20 p-4 rounded-xl text-center">
-            <p className="text-yellow-400 font-bold mb-2">💳 طرق الدفع</p>
-            <p className="text-white">{payment.vodafone}</p>
-            <p className="text-white">{payment.instapay}</p>
-            <p className="text-green-400 text-sm mt-2">
-              ⚠️ لن يتم تأكيد الحجز بدون رفع صورة الدفع
-            </p>
+          <div className="flex gap-4">
+            <span className="bg-blue-600/20 text-blue-400 px-4 py-2 rounded-full text-sm">
+              سريع ⚡
+            </span>
+            <span className="bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm">
+              آمن 🔒
+            </span>
+            <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm">
+              احترافي 💎
+            </span>
           </div>
-        )}
+        </div>
 
-        {/* Inputs */}
-        <Input
-          placeholder="الاسم"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="bg-white/10 text-white"
+        <motion.img
+          src="/images/zoomimg.jpg"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="w-full rounded-3xl shadow-2xl border border-white/10"
         />
 
-        <Input
-          placeholder="رقم الموبايل"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="bg-white/10 text-white"
-        />
+      </div>
 
-        <Input
-          placeholder="رقم واتساب"
-          value={whatsapp}
-          onChange={(e) => setWhatsapp(e.target.value)}
-          className="bg-white/10 text-white"
-        />
-
-        <Textarea
-          placeholder="الاستشارة عن ايه"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          className="bg-white/10 text-white"
-        />
-
-        {/* 🖼️ رفع صورة + preview */}
-        {selectedFiles.length === 0 ? (
-          <div
-            onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-gray-600 p-6 rounded-xl text-center cursor-pointer hover:border-blue-500"
-          >
-            <Upload className="mx-auto mb-2 text-gray-400" />
-            <p className="text-gray-400">اضغط لرفع صورة الدفع</p>
-          </div>
-        ) : (
-          <div className="relative">
-            <img
-              src={URL.createObjectURL(selectedFiles[0])}
-              className="w-full h-40 object-cover rounded-xl"
-            />
-            <button
-              type="button"
-              onClick={removeImage}
-              className="absolute top-2 right-2 bg-red-500 p-1 rounded-full"
-            >
-              <X size={16} />
-            </button>
-          </div>
-        )}
-
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          className="hidden"
-        />
-
-        {/* Button */}
-        <Button
-          disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 text-lg rounded-xl"
+      {/* 🔥 FORM */}
+      <div className="flex justify-center">
+        <motion.form
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-lg space-y-6 bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl"
         >
-          {loading ? (
-            <>
-              <Loader2 className="animate-spin mr-2" />
-              جاري الإرسال...
-            </>
-          ) : (
-            "تأكيد الحجز 🚀"
-          )}
-        </Button>
 
-      </motion.form>
+          <h2 className="text-2xl font-bold text-center text-white">
+            احجز استشارتك الآن
+          </h2>
+
+          {payment && (
+            <div className="bg-yellow-500/10 border border-yellow-400/20 p-4 rounded-xl text-center">
+              <p className="text-yellow-400 font-bold mb-2">💳 طرق الدفع</p>
+              <p className="text-white">{payment.vodafone}</p>
+              <p className="text-white">{payment.instapay}</p>
+              <p className="text-green-400 text-sm mt-2">
+                ⚠️ لن يتم تأكيد الحجز بدون رفع صورة الدفع
+              </p>
+            </div>
+          )}
+
+          <Input
+            placeholder="الاسم"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="bg-white/10 text-white border border-white/20 focus:border-blue-500"
+          />
+
+          <Input
+            placeholder="رقم الموبايل"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="bg-white/10 text-white border border-white/20 focus:border-blue-500"
+          />
+
+          <Input
+            placeholder="رقم واتساب"
+            value={whatsapp}
+            onChange={(e) => setWhatsapp(e.target.value)}
+            className="bg-white/10 text-white border border-white/20 focus:border-blue-500"
+          />
+
+          <Textarea
+            placeholder="احكي مشكلتك أو استفسارك بالتفصيل..."
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            className="bg-white/10 text-white border border-white/20 focus:border-blue-500"
+          />
+
+          {selectedFiles.length === 0 ? (
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              className="border-2 border-dashed border-gray-600 p-6 rounded-xl text-center cursor-pointer hover:border-blue-500 transition"
+            >
+              <Upload className="mx-auto mb-2 text-gray-400" />
+              <p className="text-gray-400">اضغط لرفع صورة الدفع</p>
+            </div>
+          ) : (
+            <div className="relative">
+              <img
+                src={URL.createObjectURL(selectedFiles[0])}
+                className="w-full h-40 object-cover rounded-xl"
+              />
+              <button
+                type="button"
+                onClick={removeImage}
+                className="absolute top-2 right-2 bg-red-500 p-1 rounded-full"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          )}
+
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          <Button
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-500 hover:to-blue-300 text-white py-3 text-lg rounded-xl shadow-lg"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin mr-2" />
+                جاري الإرسال...
+              </>
+            ) : (
+              "تأكيد الحجز 🚀"
+            )}
+          </Button>
+
+        </motion.form>
+      </div>
     </div>
   );
 };

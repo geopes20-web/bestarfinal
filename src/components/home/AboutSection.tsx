@@ -84,20 +84,20 @@ const AboutSection = () => {
             {/* Frame */}
             <motion.div
               className="relative p-[5px] rounded-2xl bg-gradient-to-br from-yellow-300/40 via-yellow-100/20 to-transparent shadow-xl"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={{ y: [0, -0, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
 
               <motion.div
-                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[500px] h-[400px]"
-                whileHover={{ scale: 1.05 }}
+                className="rounded-xl overflow-hidden bg-yellow-50 flex items-center justify-center w-[350px] h-[350px]"
+                whileHover={{ scale: 1.01 }}
               >
                 <motion.img
                   src="/images/uuu.png"
                   alt="Clinic"
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
-                  animate={{ scale: [1, 1.03, 1] }}
+                  animate={{ scale: [1, 1.01, 1] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
               </motion.div>

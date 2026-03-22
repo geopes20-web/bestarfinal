@@ -584,11 +584,12 @@ const translations: Record<Lang, Record<string, string>> = {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-export const I18nProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLangState] = useState<Lang>(() => {
+  export const I18nProvider = ({ children }: { children: ReactNode }) => {
+      const [lang, setLangState] = useState<Lang>(() => {
     const saved = localStorage.getItem("bestar-lang");
-    return (saved === "ar" ? "ar" : "en") as Lang;
+    return (saved === "en" ? "en" : "ar") as Lang;
   });
+    
 
   const setLang = (l: Lang) => {
     setLangState(l);
