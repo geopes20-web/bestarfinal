@@ -21,10 +21,10 @@
     <!-- 🤖 Robots -->
     <meta name="robots" content="index, follow" />
 
-    <!-- 🌍 Canonical (مهم جدًا) -->
+    <!-- 🌍 Canonical -->
     <link rel="canonical" href="https://bestarclinic.vercel.app/" />
 
-    <!-- 🔥 Open Graph (Facebook + WhatsApp) -->
+    <!-- 🔥 Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bestarclinic.vercel.app/" />
     <meta property="og:image" content="https://bestarclinic.vercel.app/images/hero.png" />
@@ -44,10 +44,10 @@
     <!-- 📌 Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <!-- ⚡ Preload Image (تحسين السرعة) -->
+    <!-- ⚡ Preload Image -->
     <link rel="preload" as="image" href="/images/hero.png">
 
-    <!-- 🔥 Structured Data (SEO قوي جدًا) -->
+    <!-- 🔥 Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -63,7 +63,6 @@
     }
     </script>
 
-    <!-- ✨ تحسين شكل الرسالة (زي ما هو) -->
     <style>
       .chat-hint {
         position: fixed;
@@ -88,14 +87,8 @@
       }
 
       @keyframes fadeSlide {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       @keyframes float {
@@ -138,8 +131,17 @@
     <!-- React App -->
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Chatbot -->
-    <script src="https://smart-clinic-aide.lovable.app/widget.js" async></script>
+    <!-- 🔥 Chatbot (DELAYED LOAD) -->
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const script = document.createElement("script");
+          script.src = "https://smart-clinic-aide.lovable.app/widget.js";
+          script.async = true;
+          document.body.appendChild(script);
+        }, 4000);
+      });
+    </script>
 
     <div class="chat-hint" id="chatHint">
       👋 محتاج استشارة؟ <br>
