@@ -10,7 +10,7 @@ const services = [
   {
     icon: Scissors,
     title: "زراعة الشعر",
-    desc: "تقنيات FUE و DHI لنتائج طبيعية بكثافة عالية.",
+    desc: "نستخدم أحدث تقنيات FUE و DHI للحصول على نتائج طبيعية بكثافة عالية، مع تصميم خط شعر يناسب ملامحك ويمنحك مظهرًا دائمًا واحترافيًا.",
     slug: "hair-transplant",
     image: "/images/service-hair.jpg",
     highlight: "5000+ عملية ناجحة",
@@ -18,23 +18,23 @@ const services = [
   {
     icon: Scissors,
     title: "زراعة اللحية",
-    desc: "تصميم لحية مثالية تناسب ملامحك.",
+    desc: "استعادة كثافة اللحية بشكل طبيعي بالكامل مع تصميم مخصص يناسب شكل وجهك ويعطيك مظهرًا متناسقًا وجذابًا.",
     slug: "beard-transplant",
     image: "/images/before-after-beard-1.jpg",
     highlight: "تصميم مخصص",
   },
   {
     icon: Droplets,
-    title: "حقن البلازما",
-    desc: "تحفيز نمو الشعر وتجديد البشرة طبيعيًا.",
-    slug: "prp",
+    title: "حقن البلازما (PRP)",
+    desc: "علاج طبيعي 100% يحفز نمو الشعر ويقوي البصيلات باستخدام عوامل النمو الموجودة في دمك للحصول على نتائج فعالة وآمنة.",
+    slug: "prp-hair-treatment",
     image: "/images/before-after-hair-1.jpg",
     highlight: "نتائج سريعة",
   },
   {
     icon: Syringe,
     title: "البوتوكس",
-    desc: "إزالة التجاعيد بدقة عالية.",
+    desc: "تقنية متطورة لإزالة التجاعيد والخطوط الدقيقة بدقة عالية مع الحفاظ على تعابير الوجه الطبيعية لمظهر أكثر شبابًا.",
     slug: "botox",
     image: "/images/before-after-botox-1.jpg",
     highlight: "بدون ألم",
@@ -42,32 +42,32 @@ const services = [
   {
     icon: Sparkles,
     title: "الفيلر",
-    desc: "نحت الوجه وإبراز الجمال الطبيعي.",
-    slug: "filler",
+    desc: "إعادة تحديد ملامح الوجه واستعادة الحجم المفقود باستخدام مواد آمنة تعطي نتائج فورية وطبيعية تدوم لفترات طويلة.",
+    slug: "dermal-fillers",
     image: "/images/before-after-filler-1.jpg",
     highlight: "نتائج فورية",
   },
   {
     icon: Sun,
     title: "تجديد البشرة",
-    desc: "بشرة نضرة وشابة.",
-    slug: "skin",
+    desc: "مجموعة متكاملة من العلاجات لتحسين نضارة البشرة وتوحيد لونها وتقليل التجاعيد للحصول على مظهر صحي ومشرق.",
+    slug: "skin-rejuvenation",
     image: "/images/before-after-skin-1.jpg",
     highlight: "نتائج مذهلة",
   },
   {
     icon: Zap,
-    title: "الليزر",
-    desc: "أحدث تقنيات إزالة الشعر وعلاج البشرة.",
-    slug: "laser",
+    title: "علاجات الليزر",
+    desc: "أحدث أجهزة الليزر لعلاج مشاكل البشرة وإزالة الشعر بدقة وأمان مع نتائج فعالة تناسب جميع أنواع البشرة.",
+    slug: "laser-treatments",
     image: "/images/before-after-laser-1.jpg",
     highlight: "تقنيات حديثة",
   },
   {
     icon: Sparkles,
     title: "العناية بالبشرة",
-    desc: "جلسات تنظيف وترطيب احترافية.",
-    slug: "facial",
+    desc: "جلسات تنظيف عميق وترطيب احترافية باستخدام منتجات طبية لتحسين صحة البشرة ومنحها إشراقة فورية.",
+    slug: "facial-treatments",
     image: "/images/before-after-skin-1.jpg",
     highlight: "بروتوكولات خاصة",
   },
@@ -204,7 +204,6 @@ const CircularServicesSection = () => {
                   {activeService.desc}
                 </p>
 
-                {/* Buttons */}
                 <div className="flex gap-4 mt-8">
 
                   <Link
@@ -223,7 +222,6 @@ const CircularServicesSection = () => {
 
                 </div>
 
-                {/* Arrows */}
                 <div className="flex gap-3 mt-6">
                   <button onClick={goNext} className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center">
                     <ChevronRight />

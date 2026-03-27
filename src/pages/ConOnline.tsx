@@ -184,7 +184,7 @@ const Consultation = () => {
 
           {payment && (
             <div className="bg-yellow-500/10 border border-yellow-400/20 p-4 rounded-xl text-center">
-              <p className="text-yellow-400 font-bold mb-2">💳 طرق الدفع</p>
+              <p className="text-yellow-400 font-bold mb-2">💳طرق الدفع</p>
               <p className="text-white">{payment.vodafone}</p>
               <p className="text-white">{payment.instapay}</p>
               <p className="text-green-400 text-sm mt-2">

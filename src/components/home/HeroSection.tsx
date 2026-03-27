@@ -23,8 +23,10 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: string; suffix?: str
 
   useEffect(() => {
     if (!isVisible) return;
+
     let start = 0;
     const duration = 2000;
+
     const step = (timestamp: number) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
@@ -32,6 +34,7 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: string; suffix?: str
       setCount(Math.floor(eased * num));
       if (progress < 1) requestAnimationFrame(step);
     };
+
     requestAnimationFrame(step);
   }, [isVisible, num]);
 
@@ -44,7 +47,7 @@ const HeroSection = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
-    if (isMobile) return; // ❗ وقف التأثير على الموبايل
+    if (isMobile) return;
 
     const handleMouse = (e: MouseEvent) => {
       setMousePos({
@@ -66,7 +69,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden">
 
-      {/* === BACKGROUND LAYER === */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0">
 
         <motion.img
@@ -74,18 +77,21 @@ const HeroSection = () => {
           alt="Bestar Clinic"
           className="w-full h-full object-cover"
           loading="eager"
-          decoding="async" // ✅ تحسين
-          initial={{ scale: 1, filter: "brightness(2) saturate(1.5)" }}
+          decoding="async"
+          initial={isMobile ? false : { scale: 1, filter: "brightness(2) saturate(1.5)" }}
           animate={{
             scale: 1,
             filter: "brightness(1) saturate(1.1)",
           }}
-          transition={{ duration: 8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: isMobile ? 0 : 8,
+            ease: [0.22, 1, 0.36, 1]
+          }}
           style={{
             transform: isMobile
               ? "none"
               : `translate(${mousePos.x * -5}px, ${mousePos.y * -5}px)`,
-            willChange: "transform", // ✅ تحسين GPU
+            willChange: "transform",
           }}
         />
 
@@ -105,7 +111,7 @@ const HeroSection = () => {
           animate={{ backgroundPosition: ["0px 0px", "0px 100px"] }}
           transition={{
             duration: 8,
-            repeat: isMobile ? 0 : Infinity, // ✅ تقليل الحمل
+            repeat: isMobile ? 0 : Infinity,
             ease: "linear"
           }}
         />
@@ -119,7 +125,7 @@ const HeroSection = () => {
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{
             duration: 6,
-            repeat: isMobile ? 0 : Infinity // ✅ تقليل الحمل
+            repeat: isMobile ? 0 : Infinity
           }}
         />
 
@@ -129,14 +135,14 @@ const HeroSection = () => {
 
       </div>
 
-      {/* === CONTENT === */}
+      {/* CONTENT */}
       <div className="relative container mx-auto px-4 lg:px-8 pt-24">
         <div className="max-w-2xl">
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={isMobile ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: isMobile ? 0 : 0.8 }}
             className="text-5xl font-bold leading-[1.3] tracking-wide text-gold-200 drop-shadow-[0_0_15px_rgba(255,215,0,0.2)]"
           >
             {t("hero.title1")} <br />
@@ -146,18 +152,18 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={isMobile ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
+            transition={{ delay: isMobile ? 0 : 0.3, duration: isMobile ? 0 : 0.7 }}
             className="mt-6 text-white/70 leading-[1.9]"
           >
             {t("hero.subtitle")}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={isMobile ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
+            transition={{ delay: isMobile ? 0 : 0.5, duration: isMobile ? 0 : 0.7 }}
             className="mt-10 flex gap-5"
           >
             <Button asChild>
@@ -178,27 +184,31 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* زر ثابت */}
+      {/* BUTTON */}
       <motion.div
-        initial={{ opacity: 0, y: 80 }}
+        initial={isMobile ? false : { opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: isMobile ? 0 : 1 }}
         className="fixed bottom-4 sm:bottom-6 left-.1/2 -translate-x-1/2 z-30 w-full flex justify-center px-3"
       >
         <Link to="/cononline" className="w-full flex justify-center">
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={isMobile ? {} : { scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            animate={{
-              boxShadow: [
-                "0 0 0px rgba(101, 150, 228, 0.4)",
-                "0 0 25px rgba(133, 151, 181, 0.9)",
-                "0 0 0px rgba(59,130,246,0.4)"
-              ]
-            }}
+            animate={
+              isMobile
+                ? {}
+                : {
+                    boxShadow: [
+                      "0 0 0px rgba(101, 150, 228, 0.4)",
+                      "0 0 25px rgba(133, 151, 181, 0.9)",
+                      "0 0 0px rgba(59,130,246,0.4)"
+                    ]
+                  }
+            }
             transition={{
               duration: 2.2,
-              repeat: isMobile ? 0 : Infinity // ✅
+              repeat: isMobile ? 0 : Infinity
             }}
             className="
               w-[85%] sm:w-auto
