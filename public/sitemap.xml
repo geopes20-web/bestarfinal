@@ -9,85 +9,105 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <lastmod>2026-03-28</lastmod>
   <changefreq>daily</changefreq>
   <priority>1.0</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/" />
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar" />
-</url>
-
-<url>
-  <loc>https://www.bestarclinic.online/ar</loc>
-  <lastmod>2026-03-28</lastmod>
-  <changefreq>daily</changefreq>
-  <priority>1.0</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/" />
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/en" />
 </url>
 
 <!-- 📄 MAIN PAGES -->
 <url>
   <loc>https://www.bestarclinic.online/services</loc>
   <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/services" />
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services" />
-</url>
-
-<url>
-  <loc>https://www.bestarclinic.online/ar/services</loc>
-  <priority>0.9</priority>
 </url>
 
 <url>
   <loc>https://www.bestarclinic.online/blog</loc>
-  <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/blog" />
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/blog" />
-</url>
-
-<url>
-  <loc>https://www.bestarclinic.online/ar/blog</loc>
   <priority>0.9</priority>
 </url>
 
 <url>
   <loc>https://www.bestarclinic.online/contact</loc>
   <priority>0.8</priority>
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.bestarclinic.online/contact" />
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/contact" />
 </url>
 
 <url>
-  <loc>https://www.bestarclinic.online/ar/contact</loc>
+  <loc>https://www.bestarclinic.online/about</loc>
   <priority>0.8</priority>
 </url>
 
-<!-- 💉 SERVICES -->
+<url>
+  <loc>https://www.bestarclinic.online/before-after</loc>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/book-appointment</loc>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/consultation</loc>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/testimonials</loc>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/faq</loc>
+  <priority>0.7</priority>
+</url>
+
+<!-- 💉 SERVICES (صححتهم بالكامل 🔥) -->
 <url>
   <loc>https://www.bestarclinic.online/services/hair-transplant</loc>
   <priority>0.95</priority>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services/hair-transplant" />
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/services/beard-transplant</loc>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/services/prp-hair-treatment</loc>
+  <priority>0.9</priority>
 </url>
 
 <url>
   <loc>https://www.bestarclinic.online/services/botox</loc>
   <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services/botox" />
 </url>
 
 <url>
-  <loc>https://www.bestarclinic.online/services/fillers</loc>
+  <loc>https://www.bestarclinic.online/services/dermal-fillers</loc>
   <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services/fillers" />
 </url>
 
 <url>
-  <loc>https://www.bestarclinic.online/services/prp</loc>
+  <loc>https://www.bestarclinic.online/services/skin-rejuvenation</loc>
   <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services/prp" />
 </url>
 
 <url>
-  <loc>https://www.bestarclinic.online/services/skin-treatments</loc>
+  <loc>https://www.bestarclinic.online/services/laser-treatments</loc>
   <priority>0.9</priority>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://www.bestarclinic.online/ar/services/skin-treatments" />
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/services/facial-treatments</loc>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/services/acne-treatment</loc>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://www.bestarclinic.online/services/scar-treatment</loc>
+  <priority>0.85</priority>
 </url>
 
 <!-- 🧠 BLOG -->
