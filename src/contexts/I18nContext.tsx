@@ -582,15 +582,23 @@ const translations: Record<Lang, Record<string, string>> = {
   },
 };
 
+
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-  export const I18nProvider = ({ children }: { children: ReactNode }) => {
-      const [lang, setLangState] = useState<Lang>(() => {
-    const saved = localStorage.getItem("bestar-lang");
-    return (saved === "en" ? "en" : "ar") as Lang;
-  });
-    
+export const I18nProvider = ({ children }: { children: ReactNode }) => {
 
+  // ✅ خلي الافتراضي عربي دايمًا (مهم لـ SEO)
+  const [lang, setLangState] = useState<Lang>("ar");
+
+  // ✅ بعد ما الصفحة تشتغل، شوف لو فيه اختيار محفوظ
+  useEffect(() => {
+    const saved = localStorage.getItem("bestar-lang");
+    if (saved === "en") {
+      setLangState("en");
+    }
+  }, []);
+
+  // ✅ تغيير اللغة
   const setLang = (l: Lang) => {
     setLangState(l);
     localStorage.setItem("bestar-lang", l);
@@ -598,11 +606,13 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
   const dir = lang === "ar" ? "rtl" : "ltr";
 
+  // ✅ تحديث HTML attributes
   useEffect(() => {
     document.documentElement.dir = dir;
     document.documentElement.lang = lang;
   }, [lang, dir]);
 
+  // ✅ الترجمة
   const t = (key: string): string => {
     return translations[lang][key] || translations.en[key] || key;
   };
