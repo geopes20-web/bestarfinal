@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Globe } from "lucide-react";
+import { Menu, X, Phone, Globe, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/contexts/I18nContext";
 
@@ -24,6 +24,9 @@ const Navbar = () => {
     { label: t("nav.blog"), path: "/blog" },
     { label: t("nav.testimonials"), path: "/testimonials" },
     { label: t("nav.contact"), path: "/contact" },
+
+    // 🔥 COMMUNITY في الآخر
+    { label: "Community", path: "/community", highlight: true },
   ];
 
   return (
@@ -36,7 +39,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
-          
+
           {/* LOGO */}
           <div className="flex items-center gap-2.5">
             <Link to="/" className="flex items-center gap-2 group">
@@ -55,7 +58,6 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* ⚕ ADMIN LINK (سيبته زي ما هو) */}
             <Link
               to="/admin/login"
               className="text-[10px] text-muted-foreground/20 hover:text-muted-foreground/40 transition-colors ms-1"
@@ -66,22 +68,38 @@ const Navbar = () => {
 
           {/* DESKTOP NAV */}
           <div className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-[13px] font-medium tracking-wide transition-colors hover:text-primary relative ${
-                  location.pathname === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {link.label}
-                {location.pathname === link.path && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-blue rounded-full" />
-                )}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+
+              if (link.highlight) {
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="relative flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg hover:scale-105 transition"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    {link.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-[13px] font-medium tracking-wide transition-colors hover:text-primary relative ${
+                    location.pathname === link.path
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {link.label}
+                  {location.pathname === link.path && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-blue rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* DESKTOP RIGHT */}
@@ -141,27 +159,45 @@ const Navbar = () => {
       {/* MOBILE MENU */}
       {isOpen && (
         <div className="lg:hidden bg-card/98 backdrop-blur-xl border-b border-border overflow-hidden">
-          <div className="container px-4 py-5 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block py-2.5 px-3 rounded-lg text-sm font-medium ${
-                  location.pathname === link.path
-                    ? "text-primary bg-primary/8"
-                    : "text-muted-foreground hover:text-primary hover:bg-muted/50"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="container px-4 py-5 space-y-2">
+
+            {navLinks.map((link) => {
+
+              if (link.highlight) {
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="block py-3 px-4 rounded-xl text-white bg-gradient-to-r from-purple-500 to-pink-500 text-center font-semibold shadow"
+                  >
+                    ✨ {link.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block py-2.5 px-3 rounded-lg text-sm font-medium ${
+                    location.pathname === link.path
+                      ? "text-primary bg-primary/8"
+                      : "text-muted-foreground hover:text-primary hover:bg-muted/50"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
             <Button asChild className="w-full mt-3">
               <Link to="/book-appointment">
                 {t("nav.bookAppointment")}
               </Link>
             </Button>
+
           </div>
         </div>
       )}

@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { I18nProvider } from "@/contexts/I18nContext";
-
+import Community from "./pages/Community";
 import { lazy, Suspense } from "react";
 
 import ProtectedRoute from "@/pages/ProtectedRoute";
@@ -31,6 +31,7 @@ const Testimonials = lazy(() => import("./pages/Testimonials"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
+
 
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
@@ -103,6 +104,7 @@ const App = () => (
                 <Route path="/terms" element={<PublicLayout><Terms /></PublicLayout>} />
                 <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
                 <Route path="/cononline" element={<ConOnline />} />
+                <Route path="/community" element={<Community />} />
 
               </Routes>
             </Suspense>
