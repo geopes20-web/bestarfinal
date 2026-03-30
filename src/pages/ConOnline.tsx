@@ -188,6 +188,9 @@ const Consultation = () => {
               <p className="text-white">{payment.vodafone}</p>
               <p className="text-white">{payment.instapay}</p>
               <p className="text-green-400 text-sm mt-2">
+                سعر الميتنج مع الدكتور : 250 جنيه
+              </p>
+              <p className="text-green-400 text-sm mt-2">
                 ⚠️ لن يتم تأكيد الحجز بدون رفع صورة الدفع
               </p>
             </div>
